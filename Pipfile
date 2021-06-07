@@ -10,6 +10,8 @@ django-cors-headers = "*"
 django-rest-auth = "*"
 django-allauth = "*"
 python-dotenv = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 
