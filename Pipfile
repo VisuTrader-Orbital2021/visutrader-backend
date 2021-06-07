@@ -12,6 +12,7 @@ django-allauth = "*"
 python-dotenv = "*"
 gunicorn = "*"
 whitenoise = "*"
+django-heroku = "*"
 
 [dev-packages]
 

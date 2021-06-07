@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from dotenv import load_dotenv
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -156,6 +157,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://visutrader.netlify.app",
     "https://visutrader-backend.herokuapp.com",
 ]
+
+django_heroku.settings(locals())
 
 SITE_ID = 1
 
