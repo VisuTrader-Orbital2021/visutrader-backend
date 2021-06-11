@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import dj_database_url
 from dotenv import load_dotenv
 import django_heroku
 from pathlib import Path
@@ -18,7 +19,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv()
+load_dotenv(override=True)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -96,12 +97,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(conn_max_age=600)
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -156,11 +153,15 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000",
 
+    # Deployment websites
     "https://visutrader.netlify.app",
     "https://visutrader-backend.herokuapp.com",
 ]
 
-django_heroku.settings(locals())
+# Some issues regarding SSL when using django_heroku
+# Quick fix: Only run it when it's on deployment environment
+if (os.environ['ENV'] != 'development'):
+    django_heroku.settings(locals())
 
 SITE_ID = 1
 
