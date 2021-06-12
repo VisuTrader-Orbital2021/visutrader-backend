@@ -146,6 +146,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# Additional custom configurations
+
+AUTH_USER_MODEL = 'api.UserAccount'
+
 # Third party settings
 
 CORS_ALLOWED_ORIGINS = [
@@ -157,6 +162,14 @@ CORS_ALLOWED_ORIGINS = [
     "https://visutrader.netlify.app",
     "https://visutrader-backend.herokuapp.com",
 ]
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'api.serializers.UserSerializer',
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'api.serializers.UserRegistrationSerializer',
+}
 
 # Some issues regarding SSL when using django_heroku
 # Quick fix: Only run it when it's on deployment environment
