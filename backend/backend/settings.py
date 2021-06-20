@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # Local apps
-    'api',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -149,7 +149,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Additional custom configurations
 
-AUTH_USER_MODEL = 'api.UserAccount'
+AUTH_USER_MODEL = 'users.UserAccount'
 
 # Third party settings
 
@@ -164,11 +164,11 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'api.serializers.UserSerializer',
+    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
 }
 
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'api.serializers.UserRegistrationSerializer',
+    'REGISTER_SERIALIZER': 'users.serializers.UserRegistrationSerializer',
 }
 
 # Some issues regarding SSL when using django_heroku
