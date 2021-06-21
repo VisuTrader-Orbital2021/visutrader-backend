@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
     # Local apps
     'users',
+    'wallets',
 ]
 
 MIDDLEWARE = [
@@ -162,6 +163,12 @@ CORS_ALLOWED_ORIGINS = [
     "https://visutrader.netlify.app",
     "https://visutrader-backend.herokuapp.com",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
