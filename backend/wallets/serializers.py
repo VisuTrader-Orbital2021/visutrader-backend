@@ -7,7 +7,7 @@ from wallets.models import Wallet, Transaction
 class WalletSerializer(serializers.HyperlinkedModelSerializer):    
     # Currently we decide that each user can only have one wallet
     owner = serializers.HyperlinkedRelatedField(many=False, view_name='users:user-detail', read_only=True)
-    history = serializers.HyperlinkedRelatedField(many=True, view_name='wallets:transaction-detail', read_only=True)
+    history = serializers.HyperlinkedRelatedField(many=True, view_name='transaction-detail', read_only=True)
 
     class Meta:
         model = Wallet
