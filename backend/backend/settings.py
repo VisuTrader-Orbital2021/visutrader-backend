@@ -171,6 +171,10 @@ CORS_ALLOWED_ORIGINS = [
     "https://visutrader-backend.herokuapp.com",
 ]
 
+# Not a good practice, but quick fix for CORS issue.
+# TODO: Fix this
+CORS_ALLOW_ALL_ORIGINS = True
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
