@@ -1,10 +1,12 @@
 from rest_framework import serializers
 from users.models import UserAccount
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    wallets = serializers.HyperlinkedRelatedField(many=True, view_name='wallet-detail', read_only=True)
+
     class Meta:
         model = UserAccount
-        fields = ['id', 'email', 'display_name', 'username']
+        fields = ['id', 'email', 'display_name', 'username', 'created_at', 'wallets']
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:

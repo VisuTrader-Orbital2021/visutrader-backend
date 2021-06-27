@@ -3,10 +3,12 @@ from django.contrib.auth import get_user_model
 from django.dispatch import receiver
 from wallets.models import Wallet, Transaction
 
+INITIAL_AMOUNT = 100_000
+
 @receiver(post_save, sender=get_user_model(), dispatch_uid='wallets.signals.create_wallet')
 def create_wallet(sender, instance, created, **kwargs):
     if created:
-        Wallet.objects.create(balance=100000, owner=instance)
+        Wallet.objects.create(balance=INITIAL_AMOUNT, owner=instance)
 
 @receiver(post_save, sender=Transaction, dispatch_uid='wallets.signals.update_wallet')
 def update_wallet(sender, instance, created, **kwargs):
