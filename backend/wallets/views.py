@@ -1,5 +1,6 @@
 from django.urls import reverse
 from wallets.models import Wallet, Transaction
+from wallets.permissions import IsTransactionDoer, IsWalletOwner, IsHistoryOwner, IsSuperuser
 from wallets.serializers import WalletSerializer, WalletHistorySerializer, TransactionSerializer
 from rest_framework import generics, status
 
@@ -14,6 +15,7 @@ class WalletList(generics.ListCreateAPIView):
     '''
     queryset = Wallet.objects.all()
     serializer_class = WalletSerializer
+    permission_classes = [IsSuperuser]
 
 class WalletDetail(generics.RetrieveUpdateAPIView):
     '''
@@ -25,6 +27,7 @@ class WalletDetail(generics.RetrieveUpdateAPIView):
     '''
     queryset = Wallet.objects.all()
     serializer_class = WalletSerializer
+    permission_classes = [IsSuperuser | IsWalletOwner]
 
 class WalletHistory(generics.ListCreateAPIView):
     '''
@@ -34,9 +37,16 @@ class WalletHistory(generics.ListCreateAPIView):
     post:
     Create a new transaction for the wallet.
     '''
+    permission_classes = [IsSuperuser | IsHistoryOwner]
+
     def get_queryset(self):
         # TODO: Try to find a way to cache the wallet object
-        return Transaction.objects.filter(from_wallet=Wallet.objects.get(pk=self.kwargs['pk']))
+        transactions = Transaction.objects.filter(from_wallet=Wallet.objects.get(pk=self.kwargs['pk']))
+        
+        for transaction in transactions:
+            self.check_object_permissions(self.request, transaction)
+
+        return transactions
     
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -54,3 +64,4 @@ class TransactionDetail(generics.RetrieveAPIView):
     '''
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
+    permission_classes = [IsSuperuser | IsTransactionDoer]
