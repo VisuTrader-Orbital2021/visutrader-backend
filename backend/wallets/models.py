@@ -5,7 +5,7 @@ from django.core.validators import MinValueValidator
 # Create your models here.
 class Wallet(models.Model):
     balance = models.DecimalField(max_digits=11, decimal_places=2, validators=[MinValueValidator(0)])
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='wallets', on_delete=models.CASCADE)
+    owner = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='wallet', on_delete=models.CASCADE)
 
 class Transaction(models.Model):
     BUY = "buy"
@@ -23,5 +23,5 @@ class Transaction(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class Position(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='position', on_delete=models.CASCADE)
-    position = models.JSONField(blank=True)
+    owner = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='position', on_delete=models.CASCADE)
+    data = models.JSONField(blank=True)
