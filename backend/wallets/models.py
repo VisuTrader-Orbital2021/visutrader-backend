@@ -21,3 +21,7 @@ class Transaction(models.Model):
     market = models.CharField(max_length=4)
     from_wallet = models.ForeignKey(Wallet, related_name='history', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Position(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='position', on_delete=models.CASCADE)
+    position = models.JSONField(blank=True)

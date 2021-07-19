@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from users.serializers import UserSerializer
-from wallets.models import Wallet, Transaction
+from wallets.models import Wallet, Transaction, Position
 
 
 class WalletSerializer(serializers.HyperlinkedModelSerializer):    
@@ -27,3 +27,10 @@ class WalletHistorySerializer(TransactionSerializer):
     class Meta:
         model = Transaction
         fields = ['url', 'amount', 'market', 'created_at']
+
+class PositionSerializer(serializers.HyperlinkedModelSerializer):
+    owner = serializers.HyperlinkedRelatedField(many=False, view_name='users:user-detail', read_only=True)
+
+    class Meta:
+        model = Position
+        fields = ['owner', 'position']

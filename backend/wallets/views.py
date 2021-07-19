@@ -1,7 +1,7 @@
 from django.urls import reverse
-from wallets.models import Wallet, Transaction
-from wallets.permissions import IsTransactionDoer, IsWalletOwner, IsHistoryOwner, IsSuperuser
-from wallets.serializers import WalletSerializer, WalletHistorySerializer, TransactionSerializer
+from wallets.models import Wallet, Transaction, Position
+from wallets.permissions import IsTransactionDoer, IsOwner, IsHistoryOwner, IsSuperuser
+from wallets.serializers import WalletSerializer, WalletHistorySerializer, TransactionSerializer, PositionSerializer
 from rest_framework import generics, status
 
 # Create your views here.
@@ -27,7 +27,7 @@ class WalletDetail(generics.RetrieveUpdateAPIView):
     '''
     queryset = Wallet.objects.all()
     serializer_class = WalletSerializer
-    permission_classes = [IsSuperuser | IsWalletOwner]
+    permission_classes = [IsSuperuser | IsOwner]
 
 class WalletHistory(generics.ListCreateAPIView):
     '''
@@ -56,7 +56,6 @@ class WalletHistory(generics.ListCreateAPIView):
     def post(self, request, pk, *args, **kwargs):
         request.data['from_wallet'] = reverse('wallet-detail', args=[pk])
         return self.create(request, *args, **kwargs)
-
 class TransactionDetail(generics.RetrieveAPIView):
     '''
     retrieve:
@@ -65,3 +64,12 @@ class TransactionDetail(generics.RetrieveAPIView):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
     permission_classes = [IsSuperuser | IsTransactionDoer]
+
+class PositionDetail(generics.RetrieveUpdateAPIView):
+    '''
+    retrieve:
+    Get details of a position
+    '''
+    queryset = Position.objects.all()
+    serializer_class = PositionSerializer
+    permission_classes = [IsSuperuser | IsOwner]

@@ -6,4 +6,5 @@ urlpatterns = [
     path('wallets/<int:pk>/', views.WalletDetail.as_view(), name='wallet-detail'),
     path('wallets/<int:pk>/history/', views.WalletHistory.as_view(), name='wallet-history'),
     path('transactions/<int:pk>/', views.TransactionDetail.as_view(), name='transaction-detail'),
+    path('position/<int:pk>/', views.PositionDetail.as_view(), name='position-detail'),
 ]
