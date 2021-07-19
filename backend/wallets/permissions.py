@@ -1,7 +1,7 @@
 from wallets.models import Wallet
 from rest_framework import permissions
 
-class IsWalletOwner(permissions.BasePermission):
+class IsOwner(permissions.BasePermission):
     """
     Custom permission to only allow owner to make CRUD operations.
     """
