@@ -14,6 +14,10 @@ def create_wallet(sender, instance, created, **kwargs):
 def update_wallet(sender, instance, created, **kwargs):
     if created:
         wallet = Wallet.objects.get(pk=instance.from_wallet.pk)
-        wallet.balance = wallet.balance + instance.amount
-        assert wallet.balance >= 0
+        
+        if instance.transaction_type == "buy":
+            wallet.balance = wallet.balance - instance.amount
+        else:
+            wallet.balance = wallet.balance + instance.amount
+
         wallet.save()

@@ -16,10 +16,10 @@ class WalletSerializer(serializers.HyperlinkedModelSerializer):
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Transaction
-        fields = ['amount', 'market', 'from_wallet', 'created_at']
+        fields = ['transaction_type', 'amount', 'quantity', 'market', 'from_wallet', 'created_at']
     
     def validate(self, data):
-        if data['from_wallet'].balance + data['amount'] < 0:
+        if data['transaction_type'] == "buy" and data['from_wallet'].balance - data['amount'] < 0:
             raise serializers.ValidationError('Wallet cannot have negative balance after transaction.')
         return data
 
