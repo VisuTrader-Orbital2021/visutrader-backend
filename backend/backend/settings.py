@@ -47,11 +47,11 @@ INSTALLED_APPS = [
     # Third party apps
     'allauth',
     'allauth.account',
-    'rest_auth.registration',
+    'dj_rest_auth.registration',
 
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
+    'dj_rest_auth',
     'corsheaders',
 
     # Local apps
