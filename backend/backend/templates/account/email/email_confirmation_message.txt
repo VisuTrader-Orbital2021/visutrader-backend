@@ -1,0 +1,7 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello, {{ user_display }}!
+
+Thank you for signing up to VisuTrader. In order to proceed, please verify your email account by clicking on the following link {{ activate_url }}{% endblocktrans %}{% endautoescape %}{% endblock %}
