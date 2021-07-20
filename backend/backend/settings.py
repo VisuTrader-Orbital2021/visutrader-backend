@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # Local apps
+    'backend',
     'users',
     'wallets',
 ]
@@ -217,5 +218,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = '[VisuTrader] - '
 ACCOUNT_USERNAME_REQUIRED = True
+
+OLD_PASSWORD_FIELD_ENABLED = True
 
 LOGIN_URL = ('http://localhost:3000' if os.environ['ENV'] == 'development' else 'visutrader.netlify.app') + '/login'
