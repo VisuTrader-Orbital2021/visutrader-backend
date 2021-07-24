@@ -56,6 +56,7 @@ class WalletHistory(generics.ListCreateAPIView):
     def post(self, request, pk, *args, **kwargs):
         request.data['from_wallet'] = reverse('wallet-detail', args=[pk])
         return self.create(request, *args, **kwargs)
+
 class TransactionDetail(generics.RetrieveAPIView):
     '''
     retrieve:

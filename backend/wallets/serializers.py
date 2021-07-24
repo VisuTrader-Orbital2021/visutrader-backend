@@ -34,7 +34,7 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
 class WalletHistorySerializer(TransactionSerializer):
     class Meta:
         model = Transaction
-        fields = ['url', 'amount', 'market', 'created_at']
+        fields = ['url', 'transaction_type', 'quantity', 'amount', 'market', 'created_at']
 
 class PositionSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.HyperlinkedRelatedField(many=False, view_name='users:user-detail', read_only=True)
