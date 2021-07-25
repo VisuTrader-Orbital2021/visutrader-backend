@@ -221,4 +221,4 @@ ACCOUNT_USERNAME_REQUIRED = True
 
 OLD_PASSWORD_FIELD_ENABLED = True
 
-LOGIN_URL = ('http://localhost:3000' if os.environ['ENV'] == 'development' else 'visutrader.netlify.app') + '/login'
+LOGIN_URL = ('http://localhost:3000' if os.environ['ENV'] == 'development' else 'https://visutrader.netlify.app') + '/login'
