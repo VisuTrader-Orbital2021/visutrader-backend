@@ -94,7 +94,6 @@ Visit our developer guide [here](https://www.notion.so/Developer-Guide-8e1f53edb
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![React_Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/)
 [![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Visual_Studio_Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)](https://code.visualstudio.com/)
 
 ## ✍️ Authors <a name="authors" />
@@ -109,4 +108,4 @@ Visit our developer guide [here](https://www.notion.so/Developer-Guide-8e1f53edb
 - [Email](mailto:visutrader.orbital2021@gmail.com)
 
 ## 🔑 Remarks <a name="remarks" />
-This project is developed under NUS Orbital program. For more information about Orbital, see [Introduction to Orbital](https://github.com/nusskylab/nusskylab/blob/master/docs/orbital.md).
+This project is developed under NUS Orbital program. For more information about Orbital, see [Introduction to Orbital](https://github.com/nusskylab/nusskylab/blob/master/docs/orbital.md). This project is no longer maintained, we are planning to migrate the framework to Express in the near future.
